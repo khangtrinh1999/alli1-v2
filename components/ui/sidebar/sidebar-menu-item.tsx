@@ -14,7 +14,7 @@ function SideBarMenuItem({ icon,value, label, active, open }: SideBarMenuItemPro
     <Link href={value} className="w-full" prefetch>
      <div
       className={cn(
-        "flex flex-row items-center gap-4 h-[40px] ml-1 px-2 rounded-md cursor-pointer text-neutral-600 hover:text-neutral-900 font-regular text-base",
+        "flex flex-row items-center gap-4 h-[40px] ml-1 px-2 rounded-md cursor-pointer text-neutral-600 hover:text-neutral-900 font-regular text-sm",
         "hover:bg-neutral-100 hover:font-medium",
         active
           ? "bg-neutral-100 text-neutral-900 font-medium"

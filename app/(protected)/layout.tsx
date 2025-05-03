@@ -26,7 +26,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
             <SideBar></SideBar>
           </div>
 
-          <div className="p-4 pl-[69px] pt-[69px] w-full h-full">
+          <div className="pl-[53px] pt-[53px] w-full h-full">
             {children}
           </div>
         </div>

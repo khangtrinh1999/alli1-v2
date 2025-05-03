@@ -9,8 +9,9 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { LogOutIcon, SettingsIcon } from "lucide-react";
+import { InboxIcon, LogOutIcon, SettingsIcon } from "lucide-react";
 import Link from "next/link";
+import { Button } from "../button";
 
 function Header() {
   return (
@@ -26,36 +27,42 @@ function Header() {
         </div>
       </Link>
 
-      <DropdownMenu>
-        <DropdownMenuTrigger asChild className="ml-auto">
-          <Avatar className="cursor-pointer">
-            <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
-            <AvatarFallback>CN</AvatarFallback>
-          </Avatar>
-        </DropdownMenuTrigger>
-        <DropdownMenuContent className="w-56" align="end" side="bottom">
-          <div className="flex flex-col px-2 gap-0 py-2">
-            <span className="text-sm">Tam Tran</span>
-            <span className="text-xs text-neutral-600">example@gmail.com</span>
-          </div>
-          <DropdownMenuSeparator />
-          <DropdownMenuRadioGroup>
-            <DropdownMenuRadioItem
-              value="close"
-              className="px-2 text-neutral-600 text-xs"
-            >
-              <SettingsIcon className="w-4 h-4"></SettingsIcon>Account Settings
-            </DropdownMenuRadioItem>
+      <div className="ml-auto flex flex-row items-center gap-4">
+        <Button size={'icon'} variant={'ghost'}><InboxIcon></InboxIcon></Button>
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild >
+            <Avatar className="cursor-pointer">
+              <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
+              <AvatarFallback>CN</AvatarFallback>
+            </Avatar>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent className="w-56" align="end" side="bottom">
+            <div className="flex flex-col px-2 gap-0 py-2">
+              <span className="text-sm">Tam Tran</span>
+              <span className="text-xs text-neutral-600">
+                example@gmail.com
+              </span>
+            </div>
             <DropdownMenuSeparator />
-            <DropdownMenuRadioItem
-              value="auto"
-              className="px-2 text-neutral-600 text-xs"
-            >
-              <LogOutIcon className="w-4 h-4"></LogOutIcon>Logout
-            </DropdownMenuRadioItem>
-          </DropdownMenuRadioGroup>
-        </DropdownMenuContent>
-      </DropdownMenu>
+            <DropdownMenuRadioGroup>
+              <DropdownMenuRadioItem
+                value="close"
+                className="px-2 text-neutral-600 text-xs"
+              >
+                <SettingsIcon className="w-4 h-4"></SettingsIcon>Account
+                Settings
+              </DropdownMenuRadioItem>
+              <DropdownMenuSeparator />
+              <DropdownMenuRadioItem
+                value="auto"
+                className="px-2 text-neutral-600 text-xs"
+              >
+                <LogOutIcon className="w-4 h-4"></LogOutIcon>Logout
+              </DropdownMenuRadioItem>
+            </DropdownMenuRadioGroup>
+          </DropdownMenuContent>
+        </DropdownMenu>
+      </div>
     </div>
   );
 }

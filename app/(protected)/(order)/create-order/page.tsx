@@ -2,7 +2,10 @@ import React from 'react'
 
 function Page() {
   return (
-    <div className='h-[3000px]'>create order</div>
+    <div className='flex flex-row'>
+     
+      
+    </div>
   )
 }
 

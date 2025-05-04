@@ -27,7 +27,7 @@ export function ImageSelect({
   value,
   onChange,
   disabled,
-  className
+  className,
 }: SimpleSelectProps) {
   const selectedItem = React.useMemo(
     () => data.find((item) => item.value === value),
@@ -35,7 +35,7 @@ export function ImageSelect({
   );
 
   return (
-    <div className={cn( className)}>
+    <div className={cn(className)}>
       {label && <span className="text-sm font-semibold">{label}</span>}
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
@@ -46,7 +46,7 @@ export function ImageSelect({
             disabled={disabled}
           >
             <span>{selectedItem?.name}</span>
-            <ChevronDown></ChevronDown>
+            <ChevronDown className="text-neutral-400"></ChevronDown>
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent
@@ -66,13 +66,23 @@ export function ImageSelect({
                   item.value === value ? "border-blue-500" : ""
                 )}
               >
-                <Image
-                  src={item.image}
-                  width={220}
-                  height={220}
-                  alt={item.name}
-                  className="rounded-md"
-                />
+                {item.image && (
+                  <Image
+                    src={item.image}
+                    width={220}
+                    height={220}
+                    alt={item.name}
+                    className="rounded-md"
+                  />
+                )}
+                {item.color && (
+                  <div
+                    className={cn(
+                      "w-[50px] h-[50px] rounded-full border border-neutral-200 border-solid"
+                    )}
+                    style={{ backgroundColor: item.color }}
+                  ></div>
+                )}
                 <span className="text-xs font-medium">{item.name}</span>
               </div>
             </DropdownMenuItem>

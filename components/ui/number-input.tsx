@@ -1,5 +1,5 @@
 "use client";
-import { DeleteIcon } from "lucide-react";
+import { DeleteIcon, EqualIcon, MinusIcon, Plus } from "lucide-react";
 import React, { useEffect, useRef, useState } from "react";
 import { Button } from "./button";
 import { Input } from "./input";
@@ -55,9 +55,28 @@ export default function SmartNumberInput({
     if (digit === "←") {
       onChange(value.slice(0, -1));
     } else if (digit === "C") {
-      onChange("0");
+      onChange("");
+    } else if (digit === "=") {
+      // Clean up any trailing +, -, or whitespace
+      let cleaned = value.trim().replace(/[+\-\s]+$/, "");
+
+      // Remove leading zeros from all numbers
+      cleaned = cleaned.replace(/\b0+(\d+)/g, (_, digits) =>
+        String(Number(digits))
+      );
+
+      try {
+        const result = cleaned ? eval(cleaned).toString() : "";
+        onChange(result);
+      } catch {
+        console.error("Invalid expression:", cleaned);
+      }
+    } else if (digit === "+" || digit === "-") {
+      const lastChar = value.slice(-1);
+      if (lastChar === "+" || lastChar === "-") return;
+      onChange(value + digit);
     } else {
-      onChange(Number(value + digit).toString());
+      onChange(value + digit);
     }
   };
 
@@ -135,16 +154,16 @@ export default function SmartNumberInput({
             zIndex: 9999,
             touchAction: "none",
           }}
-          className="border border-solid border-neutral-200 bg-white shadow rounded-lg p-2 w-56"
+          className="border border-solid border-neutral-200 bg-white shadow rounded-lg p-2 "
           onMouseDown={startDrag}
           onTouchStart={startDrag}
         >
           {/* Numpad Buttons */}
-          <div className="grid grid-cols-3 gap-2 mt-2">
+          <div className="grid grid-cols-4 gap-2 mt-2">
             <Button
               variant={"outline"}
               onClick={() => handleNumpadClick("1")}
-              className="w-full h-full p-4 text-xl active:bg-neutral-200 hover:bg-neutral-200"
+              className="w-16 h-16 p-4 text-xl active:bg-neutral-200 hover:bg-neutral-200"
               style={{ userSelect: "none" }}
             >
               1
@@ -152,7 +171,7 @@ export default function SmartNumberInput({
             <Button
               variant={"outline"}
               onClick={() => handleNumpadClick("2")}
-              className="w-full h-full p-4 text-xl active:bg-neutral-200 hover:bg-neutral-200"
+              className="w-16 h-16 p-4 text-xl active:bg-neutral-200 hover:bg-neutral-200"
               style={{ userSelect: "none" }}
             >
               2
@@ -160,79 +179,12 @@ export default function SmartNumberInput({
             <Button
               variant={"outline"}
               onClick={() => handleNumpadClick("3")}
-              className="w-full h-full p-4 text-xl active:bg-neutral-200 hover:bg-neutral-200"
+              className="w-16 h-16 p-4 text-xl active:bg-neutral-200 hover:bg-neutral-200"
               style={{ userSelect: "none" }}
             >
               3
             </Button>
-
             <Button
-              variant={"outline"}
-              onClick={() => handleNumpadClick("4")}
-              className="w-full h-full p-4 text-xl active:bg-neutral-200 hover:bg-neutral-200"
-              style={{ userSelect: "none" }}
-            >
-              4
-            </Button>
-            <Button
-              variant={"outline"}
-              onClick={() => handleNumpadClick("5")}
-              className="w-full h-full p-4 text-xl active:bg-neutral-200 hover:bg-neutral-200"
-              style={{ userSelect: "none" }}
-            >
-              5
-            </Button>
-            <Button
-              variant={"outline"}
-              onClick={() => handleNumpadClick("6")}
-              className="w-full h-full p-4 text-xl active:bg-neutral-200 hover:bg-neutral-200"
-              style={{ userSelect: "none" }}
-            >
-              6
-            </Button>
-
-            <Button
-              variant={"outline"}
-              onClick={() => handleNumpadClick("7")}
-              className="w-full h-full p-4 text-xl active:bg-neutral-200 hover:bg-neutral-200"
-              style={{ userSelect: "none" }}
-            >
-              7
-            </Button>
-            <Button
-              variant={"outline"}
-              onClick={() => handleNumpadClick("8")}
-              className="w-full h-full p-4 text-xl active:bg-neutral-200 hover:bg-neutral-200"
-              style={{ userSelect: "none" }}
-            >
-              8
-            </Button>
-            <Button
-              variant={"outline"}
-              onClick={() => handleNumpadClick("9")}
-              className="w-full h-full p-4 text-xl active:bg-neutral-200 hover:bg-neutral-200"
-              style={{ userSelect: "none" }}
-            >
-              9
-            </Button>
-
-            <div></div>
-            <Button
-              variant={"outline"}
-              onClick={() => handleNumpadClick("0")}
-              className="w-full h-full p-4 text-xl active:bg-neutral-200 hover:bg-neutral-200"
-              style={{ userSelect: "none" }}
-            >
-              0
-            </Button>
-            {/* <button
-              onClick={() => handleNumpadClick("C")}
-              className="text-xl p-4 bg-white border rounded hover:bg-neutral-200 active:bg-neutral-300"
-            >
-              C
-            </button> */}
-            <Button
-              variant="outline"
               onTouchStart={() => {
                 holdTimeout.current = setTimeout(() => {
                   handleNumpadClick("C"); // long press triggers "C"
@@ -250,10 +202,92 @@ export default function SmartNumberInput({
                   clearTimeout(holdTimeout.current);
                 }
               }}
-              className="w-full h-full p-4 active:bg-neutral-200 hover:bg-neutral-200"
+              className="w-16 h-16 p-4 active:bg-neutral-600 hover:bg-neutral-600"
               style={{ userSelect: "none" }}
             >
               <DeleteIcon className="w-6 h-6" />
+            </Button>
+
+            <Button
+              variant={"outline"}
+              onClick={() => handleNumpadClick("4")}
+              className="w-16 h-16 p-4 text-xl active:bg-neutral-200 hover:bg-neutral-200"
+              style={{ userSelect: "none" }}
+            >
+              4
+            </Button>
+            <Button
+              variant={"outline"}
+              onClick={() => handleNumpadClick("5")}
+              className="w-16 h-16 p-4 text-xl active:bg-neutral-200 hover:bg-neutral-200"
+              style={{ userSelect: "none" }}
+            >
+              5
+            </Button>
+            <Button
+              variant={"outline"}
+              onClick={() => handleNumpadClick("6")}
+              className="w-16 h-16 p-4 text-xl active:bg-neutral-200 hover:bg-neutral-200"
+              style={{ userSelect: "none" }}
+            >
+              6
+            </Button>
+            <Button
+              onClick={() => handleNumpadClick("+")}
+              className="w-16 h-16 p-4 text-xl active:bg-neutral-600 hover:bg-neutral-600"
+              style={{ userSelect: "none" }}
+            >
+              <Plus className="w-6 h-6" />
+            </Button>
+
+            <Button
+              variant={"outline"}
+              onClick={() => handleNumpadClick("7")}
+              className="w-16 h-16 p-4 text-xl active:bg-neutral-200 hover:bg-neutral-200"
+              style={{ userSelect: "none" }}
+            >
+              7
+            </Button>
+            <Button
+              variant={"outline"}
+              onClick={() => handleNumpadClick("8")}
+              className="w-16 h-16 p-4 text-xl active:bg-neutral-200 hover:bg-neutral-200"
+              style={{ userSelect: "none" }}
+            >
+              8
+            </Button>
+            <Button
+              variant={"outline"}
+              onClick={() => handleNumpadClick("9")}
+              className="w-16 h-16 p-4 text-xl active:bg-neutral-200 hover:bg-neutral-200"
+              style={{ userSelect: "none" }}
+            >
+              9
+            </Button>
+
+            <Button
+              onClick={() => handleNumpadClick("-")}
+              className="w-16 h-16 p-4 text-xl active:bg-neutral-600 hover:bg-neutral-600"
+              style={{ userSelect: "none" }}
+            >
+              <MinusIcon className="w-6 h-6" />
+            </Button>
+            <div></div>
+            <Button
+              variant={"outline"}
+              onClick={() => handleNumpadClick("0")}
+              className="w-16 h-16 p-4 text-xl active:bg-neutral-200 hover:bg-neutral-200"
+              style={{ userSelect: "none" }}
+            >
+              0
+            </Button>
+            <div></div>
+            <Button
+              onClick={() => handleNumpadClick("=")}
+              className="w-16 h-16 p-4 text-xl active:bg-neutral-600 hover:bg-neutral-600"
+              style={{ userSelect: "none" }}
+            >
+              <EqualIcon className="w-6 h-6" />
             </Button>
           </div>
         </div>

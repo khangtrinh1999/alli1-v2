@@ -73,7 +73,7 @@ function VerticalBlind() {
               name="fabricBrand"
               render={({ field }) => (
                 <FormItem className="flex flex-row justify-between gap-4">
-                  <FormLabel className="flex gap-1">
+                  <FormLabel className="flex gap-1 custom-label">
                     Fabric Type<span className="text-red-500">*</span>
                   </FormLabel>
                   <FormControl>
@@ -95,7 +95,7 @@ function VerticalBlind() {
               name="fabricName"
               render={({ field }) => (
                 <FormItem className="flex flex-row justify-between gap-4">
-                  <FormLabel className="flex gap-1">Fabric Name</FormLabel>
+                  <FormLabel className="flex gap-1 custom-label">Fabric Name</FormLabel>
                   <FormControl>
                     <GridSelector
                       className="w-2/3"
@@ -114,7 +114,7 @@ function VerticalBlind() {
               name="trackColor"
               render={({ field }) => (
                 <FormItem className="flex flex-row justify-between gap-4">
-                  <FormLabel className="flex gap-1">
+                  <FormLabel className="flex gap-1 custom-label">
                     Track Color<span className="text-red-500">*</span>
                   </FormLabel>
                   <FormControl>
@@ -135,7 +135,7 @@ function VerticalBlind() {
               name="trackBrand"
               render={({ field }) => (
                 <FormItem className="flex flex-row justify-between gap-4">
-                  <FormLabel className="flex gap-1">
+                  <FormLabel className="flex gap-1 custom-label">
                     Track Brand<span className="text-red-500">*</span>
                   </FormLabel>
                   <FormControl>
@@ -160,7 +160,7 @@ function VerticalBlind() {
               name="controlType"
               render={({ field }) => (
                 <FormItem className="flex flex-row justify-between gap-4">
-                  <FormLabel className="flex gap-1">
+                  <FormLabel className="flex gap-1 custom-label">
                     Control Type<span className="text-red-500">*</span>
                   </FormLabel>
                   <FormControl>
@@ -182,7 +182,7 @@ function VerticalBlind() {
               name="controlColor"
               render={({ field }) => (
                 <FormItem className="flex flex-row justify-between gap-4">
-                  <FormLabel className="flex gap-1">
+                  <FormLabel className="flex gap-1 custom-label">
                     Control Color<span className="text-red-500">*</span>
                   </FormLabel>
                   <FormControl>
@@ -204,7 +204,7 @@ function VerticalBlind() {
               name="pelmet"
               render={({ field }) => (
                 <FormItem className="flex flex-row justify-between gap-4">
-                  <FormLabel className="flex gap-1">
+                  <FormLabel className="flex gap-1 custom-label">
                     Pelmet<span className="text-red-500">*</span>
                   </FormLabel>
                   <FormControl>
@@ -227,7 +227,7 @@ function VerticalBlind() {
               name="link"
               render={({ field }) => (
                 <FormItem className="flex flex-row justify-between gap-4">
-                  <FormLabel className="flex gap-1">
+                  <FormLabel className="flex gap-1 custom-label">
                     Link<span className="text-red-500">*</span>
                   </FormLabel>
                   <FormControl>

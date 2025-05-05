@@ -144,6 +144,7 @@ export default function SmartNumberInput({
               variant={"outline"}
               onClick={() => handleNumpadClick("1")}
               className="w-full h-full p-4 text-xl active:bg-neutral-200 hover:bg-neutral-200"
+              style={{ userSelect: "none" }}
             >
               1
             </Button>
@@ -151,6 +152,7 @@ export default function SmartNumberInput({
               variant={"outline"}
               onClick={() => handleNumpadClick("2")}
               className="w-full h-full p-4 text-xl active:bg-neutral-200 hover:bg-neutral-200"
+              style={{ userSelect: "none" }}
             >
               2
             </Button>
@@ -158,6 +160,7 @@ export default function SmartNumberInput({
               variant={"outline"}
               onClick={() => handleNumpadClick("3")}
               className="w-full h-full p-4 text-xl active:bg-neutral-200 hover:bg-neutral-200"
+              style={{ userSelect: "none" }}
             >
               3
             </Button>
@@ -166,6 +169,7 @@ export default function SmartNumberInput({
               variant={"outline"}
               onClick={() => handleNumpadClick("4")}
               className="w-full h-full p-4 text-xl active:bg-neutral-200 hover:bg-neutral-200"
+              style={{ userSelect: "none" }}
             >
               4
             </Button>
@@ -173,6 +177,7 @@ export default function SmartNumberInput({
               variant={"outline"}
               onClick={() => handleNumpadClick("5")}
               className="w-full h-full p-4 text-xl active:bg-neutral-200 hover:bg-neutral-200"
+              style={{ userSelect: "none" }}
             >
               5
             </Button>
@@ -180,6 +185,7 @@ export default function SmartNumberInput({
               variant={"outline"}
               onClick={() => handleNumpadClick("6")}
               className="w-full h-full p-4 text-xl active:bg-neutral-200 hover:bg-neutral-200"
+              style={{ userSelect: "none" }}
             >
               6
             </Button>
@@ -188,6 +194,7 @@ export default function SmartNumberInput({
               variant={"outline"}
               onClick={() => handleNumpadClick("7")}
               className="w-full h-full p-4 text-xl active:bg-neutral-200 hover:bg-neutral-200"
+              style={{ userSelect: "none" }}
             >
               7
             </Button>
@@ -195,6 +202,7 @@ export default function SmartNumberInput({
               variant={"outline"}
               onClick={() => handleNumpadClick("8")}
               className="w-full h-full p-4 text-xl active:bg-neutral-200 hover:bg-neutral-200"
+              style={{ userSelect: "none" }}
             >
               8
             </Button>
@@ -202,6 +210,7 @@ export default function SmartNumberInput({
               variant={"outline"}
               onClick={() => handleNumpadClick("9")}
               className="w-full h-full p-4 text-xl active:bg-neutral-200 hover:bg-neutral-200"
+              style={{ userSelect: "none" }}
             >
               9
             </Button>
@@ -211,19 +220,28 @@ export default function SmartNumberInput({
               variant={"outline"}
               onClick={() => handleNumpadClick("0")}
               className="w-full h-full p-4 text-xl active:bg-neutral-200 hover:bg-neutral-200"
+              style={{ userSelect: "none" }}
             >
               0
             </Button>
-            {/* <button
-              onClick={() => handleNumpadClick("C")}
-              className="text-xl p-4 bg-white border rounded hover:bg-neutral-200 active:bg-neutral-300"
-            >
-              C
-            </button> */}
             <Button
               variant={"outline"}
-              onClick={() => handleNumpadClick("←")}
-              className="w-full h-full  p-4  active:bg-neutral-200 hover:bg-neutral-200"
+              onMouseDown={(e) => {
+                const timeout = setTimeout(() => {
+                  handleNumpadClick("C"); // Trigger "C" on long press
+                }, 500); // Adjust the duration for a long press (500ms)
+
+                e.currentTarget.onmouseup = () => {
+                  clearTimeout(timeout); // Clear timeout if the button is released
+                  handleNumpadClick("←"); // Trigger "←" on normal click
+                };
+
+                e.currentTarget.onmouseleave = () => {
+                  clearTimeout(timeout); // Clear timeout if the cursor leaves the button
+                };
+              }}
+              className="w-full h-full p-4 active:bg-neutral-200 hover:bg-neutral-200"
+              style={{ userSelect: "none" }}
             >
               <DeleteIcon className="w-6 h-6"></DeleteIcon>
             </Button>

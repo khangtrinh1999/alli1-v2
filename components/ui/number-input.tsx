@@ -7,9 +7,11 @@ import { Input } from "./input";
 export default function SmartNumberInput({
   value,
   onChange,
+  className,
 }: {
   value: string;
   onChange: (val: string) => void;
+  className?: string;
 }) {
   const holdTimeout = useRef<NodeJS.Timeout | null>(null);
   const [isTouchDevice, setIsTouchDevice] = useState(false);
@@ -130,19 +132,19 @@ export default function SmartNumberInput({
         type="number"
         value={value}
         onChange={(e) => onChange(e.target.value)}
-        className="border p-2 rounded w-full"
+        className={className}
       />
     );
   }
 
   return (
-    <div>
+    <div className={className}>
       <Input
         type="text"
         value={value}
         onFocus={() => setShowNumpad(true)}
         readOnly
-        className="border w-full bg-white cursor-pointer"
+       
       />
 
       {showNumpad && (
@@ -166,6 +168,7 @@ export default function SmartNumberInput({
               onClick={() => handleNumpadClick("1")}
               className="w-16 h-16 p-4 text-xl active:bg-neutral-200 hover:bg-neutral-200"
               style={{ userSelect: "none" }}
+              type="button"
             >
               1
             </Button>
@@ -174,6 +177,7 @@ export default function SmartNumberInput({
               onClick={() => handleNumpadClick("2")}
               className="w-16 h-16 p-4 text-xl active:bg-neutral-200 hover:bg-neutral-200"
               style={{ userSelect: "none" }}
+              type="button"
             >
               2
             </Button>
@@ -182,6 +186,7 @@ export default function SmartNumberInput({
               onClick={() => handleNumpadClick("3")}
               className="w-16 h-16 p-4 text-xl active:bg-neutral-200 hover:bg-neutral-200"
               style={{ userSelect: "none" }}
+              type="button"
             >
               3
             </Button>
@@ -205,6 +210,7 @@ export default function SmartNumberInput({
               }}
               className="w-16 h-16 p-4 active:bg-neutral-600 hover:bg-neutral-600"
               style={{ userSelect: "none" }}
+              type="button"
             >
               <DeleteIcon className="w-6 h-6" />
             </Button>
@@ -214,6 +220,7 @@ export default function SmartNumberInput({
               onClick={() => handleNumpadClick("4")}
               className="w-16 h-16 p-4 text-xl active:bg-neutral-200 hover:bg-neutral-200"
               style={{ userSelect: "none" }}
+              type="button"
             >
               4
             </Button>
@@ -222,6 +229,7 @@ export default function SmartNumberInput({
               onClick={() => handleNumpadClick("5")}
               className="w-16 h-16 p-4 text-xl active:bg-neutral-200 hover:bg-neutral-200"
               style={{ userSelect: "none" }}
+              type="button"
             >
               5
             </Button>
@@ -230,6 +238,7 @@ export default function SmartNumberInput({
               onClick={() => handleNumpadClick("6")}
               className="w-16 h-16 p-4 text-xl active:bg-neutral-200 hover:bg-neutral-200"
               style={{ userSelect: "none" }}
+              type="button"
             >
               6
             </Button>
@@ -237,6 +246,7 @@ export default function SmartNumberInput({
               onClick={() => handleNumpadClick("+")}
               className="w-16 h-16 p-4 text-xl active:bg-neutral-600 hover:bg-neutral-600"
               style={{ userSelect: "none" }}
+              type="button"
             >
               <Plus className="w-6 h-6" />
             </Button>
@@ -246,6 +256,7 @@ export default function SmartNumberInput({
               onClick={() => handleNumpadClick("7")}
               className="w-16 h-16 p-4 text-xl active:bg-neutral-200 hover:bg-neutral-200"
               style={{ userSelect: "none" }}
+              type="button"
             >
               7
             </Button>
@@ -254,6 +265,7 @@ export default function SmartNumberInput({
               onClick={() => handleNumpadClick("8")}
               className="w-16 h-16 p-4 text-xl active:bg-neutral-200 hover:bg-neutral-200"
               style={{ userSelect: "none" }}
+              type="button"
             >
               8
             </Button>
@@ -262,6 +274,7 @@ export default function SmartNumberInput({
               onClick={() => handleNumpadClick("9")}
               className="w-16 h-16 p-4 text-xl active:bg-neutral-200 hover:bg-neutral-200"
               style={{ userSelect: "none" }}
+              type="button"
             >
               9
             </Button>
@@ -270,6 +283,7 @@ export default function SmartNumberInput({
               onClick={() => handleNumpadClick("-")}
               className="w-16 h-16 p-4 text-xl active:bg-neutral-600 hover:bg-neutral-600"
               style={{ userSelect: "none" }}
+              type="button"
             >
               <MinusIcon className="w-6 h-6" />
             </Button>
@@ -279,6 +293,7 @@ export default function SmartNumberInput({
               onClick={() => handleNumpadClick("0")}
               className="w-16 h-16 p-4 text-xl active:bg-neutral-200 hover:bg-neutral-200"
               style={{ userSelect: "none" }}
+              type="button"
             >
               0
             </Button>
@@ -287,6 +302,7 @@ export default function SmartNumberInput({
               onClick={() => handleNumpadClick("=")}
               className="w-16 h-16 p-4 text-xl active:bg-neutral-600 hover:bg-neutral-600"
               style={{ userSelect: "none" }}
+              type="button"
             >
               <EqualIcon className="w-6 h-6" />
             </Button>

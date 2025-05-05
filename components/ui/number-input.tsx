@@ -51,6 +51,7 @@ export default function SmartNumberInput({
     };
   }, []);
 
+  //
   const handleNumpadClick = (digit: string) => {
     if (digit === "←") {
       onChange(value.slice(0, -1));

@@ -130,7 +130,7 @@ export default function SmartNumberInput({
   if (!isTouchDevice) {
     return (
       <Input
-        type="number"
+       
         value={value}
         onChange={(e) => onChange(e.target.value)}
         className={className}
@@ -300,7 +300,15 @@ export default function SmartNumberInput({
             >
               0
             </Button>
-            <div></div>
+            <Button
+              variant={"outline"}
+              onClick={() => handleNumpadClick(".")}
+              className="w-16 h-16 p-4 text-xl active:bg-neutral-200 hover:bg-neutral-200"
+              style={{ userSelect: "none" }}
+              type="button"
+            >
+              .
+            </Button>
             <Button
               onClick={() => handleNumpadClick("=")}
               className="w-16 h-16 p-4 text-xl active:bg-neutral-600 hover:bg-neutral-600"

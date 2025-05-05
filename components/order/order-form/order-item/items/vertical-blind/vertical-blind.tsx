@@ -41,7 +41,7 @@ const formSchema = z.object({
   width: z
   .string()
   .min(1, { message: "Width is required" })
-  .regex(/^\d+$/, { message: "Width must be a number" }),
+  .regex(/^\d+(\.\d+)?$/, { message: "Width must be a valid number" }),
 });
 function VerticalBlind() {
   const form = useForm<FormValues>({

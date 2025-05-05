@@ -11,6 +11,7 @@ export default function SmartNumberInput({
   value: string;
   onChange: (val: string) => void;
 }) {
+  const holdTimeout = useRef<NodeJS.Timeout | null>(null);
   const [isTouchDevice, setIsTouchDevice] = useState(false);
   const [showNumpad, setShowNumpad] = useState(false);
   const numpadRef = useRef<HTMLDivElement>(null);
@@ -54,9 +55,9 @@ export default function SmartNumberInput({
     if (digit === "←") {
       onChange(value.slice(0, -1));
     } else if (digit === "C") {
-      onChange("");
+      onChange("0");
     } else {
-      onChange(value + digit);
+      onChange(Number(value + digit).toString());
     }
   };
 
@@ -224,26 +225,35 @@ export default function SmartNumberInput({
             >
               0
             </Button>
+            {/* <button
+              onClick={() => handleNumpadClick("C")}
+              className="text-xl p-4 bg-white border rounded hover:bg-neutral-200 active:bg-neutral-300"
+            >
+              C
+            </button> */}
             <Button
-              variant={"outline"}
-              onMouseDown={(e) => {
-                const timeout = setTimeout(() => {
-                  handleNumpadClick("C"); // Trigger "C" on long press
-                }, 500); // Adjust the duration for a long press (500ms)
-
-                e.currentTarget.onmouseup = () => {
-                  clearTimeout(timeout); // Clear timeout if the button is released
-                  handleNumpadClick("←"); // Trigger "←" on normal click
-                };
-
-                e.currentTarget.onmouseleave = () => {
-                  clearTimeout(timeout); // Clear timeout if the cursor leaves the button
-                };
+              variant="outline"
+              onTouchStart={() => {
+                holdTimeout.current = setTimeout(() => {
+                  handleNumpadClick("C"); // long press triggers "C"
+                  holdTimeout.current = null; // clear ref to block tap
+                }, 500); // adjust hold duration as needed
+              }}
+              onTouchEnd={() => {
+                if (holdTimeout.current) {
+                  clearTimeout(holdTimeout.current);
+                  handleNumpadClick("←"); // short tap triggers "←"
+                }
+              }}
+              onTouchCancel={() => {
+                if (holdTimeout.current) {
+                  clearTimeout(holdTimeout.current);
+                }
               }}
               className="w-full h-full p-4 active:bg-neutral-200 hover:bg-neutral-200"
               style={{ userSelect: "none" }}
             >
-              <DeleteIcon className="w-6 h-6"></DeleteIcon>
+              <DeleteIcon className="w-6 h-6" />
             </Button>
           </div>
         </div>

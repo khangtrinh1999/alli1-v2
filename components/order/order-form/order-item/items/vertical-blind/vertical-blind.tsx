@@ -1,7 +1,12 @@
 'use client";';
-import React from "react";
+import React, { useState } from "react";
 import { z } from "zod";
-import { controlColors, controlTypes, fabricBrandBlockOut89, KamarBlockOut, SkyBlockout, TrackColors, VibeBlockout } from "./data";
+import {
+  controlColors,
+  controlTypes,
+  fabricBrandBlockOut127,
+  TrackColors,
+} from "./data";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
@@ -14,12 +19,25 @@ import {
 } from "@/components/ui/form";
 import { ImageSelect } from "@/components/ui/image-select";
 import { GridSelector } from "@/components/ui/grid-selector";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { Selections } from "@/lib/interface";
+import SmartNumberInput from "@/components/ui/number-input";
+
 const formSchema = z.object({
   controlType: z.string().min(1, "You must select an option"),
   controlColor: z.string().min(1, "You must select an option"),
   trackColor: z.string().min(1, "You must select an option"),
   fabricBrand: z.string().min(1, "You must select an option"),
   fabricName: z.string().min(1, "You must select an option"),
+  pelmet: z.string().min(1, "You must select an option"),
+  link: z.string().min(1, "You must select an option"),
+  trackBrand: z.string().min(1, "You must select an option"),
 });
 function VerticalBlind() {
   const form = useForm<FormValues>({
@@ -29,28 +47,43 @@ function VerticalBlind() {
       controlColor: "White",
       trackColor: "White",
       fabricBrand: "1",
-      fabricName:""
+      fabricName: "",
+      pelmet: "No",
+      link: "No",
+      trackBrand: "JAI",
     },
   });
   type FormValues = z.infer<typeof formSchema>;
+  const [fabricName, setFabricName] = useState<Selections[]>([]);
+  const onChangeFabricBrand = (subItems:Selections[]) =>{
+    setFabricName(subItems)
+  }
+  const [number, setNumber] = useState<string>("0");
   return (
     <div className="w-full flex flex-col">
-      <div className="w-full grid grid-cols-2 gap-10">
-        <Form {...form}>
-          <form className="space-y-4">
-          <FormField
+      <div className="my-10">
+      <SmartNumberInput value={number} onChange={setNumber}></SmartNumberInput>
+      </div>
+     
+      <Form {...form}>
+        <form className="flex flex-row gap-6">
+          <div className="flex-1 flex flex-col gap-2">
+            <FormField
               control={form.control}
               name="fabricBrand"
               render={({ field }) => (
                 <FormItem className="flex flex-row justify-between gap-4">
-                  <FormLabel className="flex gap-1">Fabric Type<span className="text-red-500">*</span></FormLabel>
-                  <FormControl >
+                  <FormLabel className="flex gap-1">
+                    Fabric Type<span className="text-red-500">*</span>
+                  </FormLabel>
+                  <FormControl>
                     <GridSelector
                       className="w-2/3"
-                      data={fabricBrandBlockOut89} // must match value keys
+                      data={fabricBrandBlockOut127} // must match value keys
                       value={field.value}
                       onChange={field.onChange}
                       disabled={field.disabled}
+                      setSubItem={onChangeFabricBrand}
                     />
                   </FormControl>
                   <FormMessage />
@@ -63,48 +96,10 @@ function VerticalBlind() {
               render={({ field }) => (
                 <FormItem className="flex flex-row justify-between gap-4">
                   <FormLabel className="flex gap-1">Fabric Name</FormLabel>
-                  <FormControl >
+                  <FormControl>
                     <GridSelector
                       className="w-2/3"
-                      data={KamarBlockOut} // must match value keys
-                      value={field.value}
-                      onChange={field.onChange}
-                      disabled={field.disabled}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={form.control}
-              name="controlType"
-              render={({ field }) => (
-                <FormItem className="flex flex-row justify-between gap-4">
-                  <FormLabel className="flex gap-1">Control Type<span className="text-red-500">*</span></FormLabel>
-                  <FormControl >
-                    <ImageSelect
-                      className="w-2/3"
-                      data={controlTypes} // must match value keys
-                      value={field.value}
-                      onChange={field.onChange}
-                      disabled={field.disabled}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={form.control}
-              name="controlColor"
-              render={({ field }) => (
-                <FormItem className="flex flex-row justify-between gap-4">
-                  <FormLabel className="flex gap-1">Control Color<span className="text-red-500">*</span></FormLabel>
-                  <FormControl >
-                    <ImageSelect
-                      className="w-2/3"
-                      data={controlColors} // must match value keys
+                      data={fabricName} // must match value keys
                       value={field.value}
                       onChange={field.onChange}
                       disabled={field.disabled}
@@ -119,13 +114,13 @@ function VerticalBlind() {
               name="trackColor"
               render={({ field }) => (
                 <FormItem className="flex flex-row justify-between gap-4">
-                  <FormLabel className="flex gap-1">Track Color<span className="text-red-500">*</span></FormLabel>
-                  <FormControl >
+                  <FormLabel className="flex gap-1">
+                    Track Color<span className="text-red-500">*</span>
+                  </FormLabel>
+                  <FormControl>
                     <ImageSelect
                       className="w-2/3"
-                      data={TrackColors
-
-                      } // must match value keys
+                      data={TrackColors} // must match value keys
                       value={field.value}
                       onChange={field.onChange}
                       disabled={field.disabled}
@@ -135,9 +130,124 @@ function VerticalBlind() {
                 </FormItem>
               )}
             />
-          </form>
-        </Form>
-      </div>
+            <FormField
+              control={form.control}
+              name="trackBrand"
+              render={({ field }) => (
+                <FormItem className="flex flex-row justify-between gap-4">
+                  <FormLabel className="flex gap-1">
+                    Track Brand<span className="text-red-500">*</span>
+                  </FormLabel>
+                  <FormControl>
+                    <Select value={field.value} onValueChange={field.onChange}>
+                      <SelectTrigger className="w-2/3">
+                        <SelectValue />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="JAI">JAI</SelectItem>
+                        <SelectItem value="UNILINE">UNILINE</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          </div>
+          <div className="flex-1 flex flex-col gap-2">
+            <FormField
+              control={form.control}
+              name="controlType"
+              render={({ field }) => (
+                <FormItem className="flex flex-row justify-between gap-4">
+                  <FormLabel className="flex gap-1">
+                    Control Type<span className="text-red-500">*</span>
+                  </FormLabel>
+                  <FormControl>
+                    <ImageSelect
+                      className="w-2/3"
+                      data={controlTypes} // must match value keys
+                      value={field.value}
+                      onChange={field.onChange}
+                      disabled={field.disabled}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            <FormField
+              control={form.control}
+              name="controlColor"
+              render={({ field }) => (
+                <FormItem className="flex flex-row justify-between gap-4">
+                  <FormLabel className="flex gap-1">
+                    Control Color<span className="text-red-500">*</span>
+                  </FormLabel>
+                  <FormControl>
+                    <ImageSelect
+                      className="w-2/3"
+                      data={controlColors} // must match value keys
+                      value={field.value}
+                      onChange={field.onChange}
+                      disabled={field.disabled}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            <FormField
+              control={form.control}
+              name="pelmet"
+              render={({ field }) => (
+                <FormItem className="flex flex-row justify-between gap-4">
+                  <FormLabel className="flex gap-1">
+                    Pelmet<span className="text-red-500">*</span>
+                  </FormLabel>
+                  <FormControl>
+                    <Select value={field.value} onValueChange={field.onChange}>
+                      <SelectTrigger className="w-2/3">
+                        <SelectValue />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="Yes">Yes</SelectItem>
+                        <SelectItem value="No">No</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="link"
+              render={({ field }) => (
+                <FormItem className="flex flex-row justify-between gap-4">
+                  <FormLabel className="flex gap-1">
+                    Link<span className="text-red-500">*</span>
+                  </FormLabel>
+                  <FormControl>
+                    <Select value={field.value} onValueChange={field.onChange}>
+                      <SelectTrigger className="w-2/3">
+                        <SelectValue />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="Yes">Yes</SelectItem>
+                        <SelectItem value="No">No</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          </div>
+        </form>
+      </Form>
     </div>
   );
 }

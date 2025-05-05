@@ -20,6 +20,7 @@ interface GridSelectorProps {
   onChange: (value: string) => void;
   disabled?: boolean;
   className?: string;
+  setSubItem?: (subItems: Selections[]) => void;
 }
 
 export function GridSelector({
@@ -29,6 +30,7 @@ export function GridSelector({
   onChange,
   disabled,
   className,
+  setSubItem,
 }: GridSelectorProps) {
  
 
@@ -74,7 +76,9 @@ export function GridSelector({
             {filteredData.map((item) => (
               <DropdownMenuItem
                 key={item.value}
-                onSelect={() => onChange(item.value)}
+                onSelect={() => {onChange(item.value)
+                  setSubItem?.(item.subItems ? item.subItems : [])
+                }}
                 className="focus:bg-white"
               >
                 <div

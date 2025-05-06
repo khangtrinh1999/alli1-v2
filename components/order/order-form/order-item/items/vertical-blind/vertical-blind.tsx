@@ -272,7 +272,7 @@ function VerticalBlind() {
           <div className="table-label w-[50px]"></div>
           <div className="table-label w-[200px]"></div>
           <div className="table-label w-[80px]"><SmartNumberInput value={width} onChange={setWidth}></SmartNumberInput></div>
-          <div className="table-label w-[80px]"><SmartNumberInput value={width} onChange={setWidth}></SmartNumberInput></div>
+          <div className="table-label w-[80px]"><SmartNumberInput value={height} onChange={setHeight}></SmartNumberInput></div>
           <div className="table-label w-[200px]"></div>
           <div className="table-label w-[200px]"></div>
           <div className="table-label w-[150px]"></div>

@@ -6,6 +6,7 @@ import {
   controlTypes,
   fabricBrandBlockOut127,
   TrackColors,
+  VibeBlockout,
 } from "./data";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -38,10 +39,6 @@ const formSchema = z.object({
   pelmet: z.string().min(1, "You must select an option"),
   link: z.string().min(1, "You must select an option"),
   trackBrand: z.string().min(1, "You must select an option"),
-  width: z
-  .string()
-  .min(1, { message: "Width is required" })
-  .regex(/^\d+(\.\d+)?$/, { message: "Width must be a valid number" }),
 });
 function VerticalBlind() {
   const form = useForm<FormValues>({
@@ -56,11 +53,10 @@ function VerticalBlind() {
       pelmet: "No",
       link: "No",
       trackBrand: "JAI",
-      width: "",
     },
   });
   type FormValues = z.infer<typeof formSchema>;
-  const [fabricName, setFabricName] = useState<Selections[]>([]);
+  const [fabricName, setFabricName] = useState<Selections[]>(VibeBlockout);
   const onChangeFabricBrand = (subItems: Selections[]) => {
     setFabricName(subItems);
   };
@@ -69,28 +65,6 @@ function VerticalBlind() {
       <Form {...form}>
         <form className="flex flex-row gap-6">
           <div className="flex-1 flex flex-col gap-2">
-            <FormField
-              control={form.control}
-              name="width"
-              render={({ field }) => (
-                <FormItem className="flex flex-row justify-between gap-4">
-                  <FormLabel className="flex gap-1 custom-label">
-                    Width<span className="text-red-500">*</span>
-                  </FormLabel>
-                  <div className="w-2/3">
-                  <FormControl>
-                    <SmartNumberInput
-                      value={field.value}
-                      onChange={field.onChange}
-                      className="w-full"
-                    ></SmartNumberInput>
-                  </FormControl>
-                  <FormMessage />
-                  </div>
-                  
-                </FormItem>
-              )}
-            />
             <FormField
               control={form.control}
               name="fabricBrand"
@@ -273,6 +247,22 @@ function VerticalBlind() {
           </div>
         </form>
       </Form>
+
+      <div className="flex flex-row gap-4 my-6 w-full overflow-x-scroll no-scrollbar">
+       <div className="table-label w-[120px]">Action</div>
+       <div className="table-label w-[50px]">No</div>
+       <div className="table-label w-[200px]">Location</div>
+       <div className="table-label w-[80px]">Width</div>
+       <div className="table-label w-[80px]">Height</div> 
+       <div className="table-label w-[200px]">Control Stack</div>
+       <div className="table-label w-[200px]">Control Length</div>
+       <div className="table-label w-[150px]">Fitting</div>
+       <div className="table-label w-[200px]">Fitting To</div>
+       <div className="table-label w-[500px]">Note</div>
+       <div className="table-label w-[500px]">Extra</div>
+       <div className="table-label w-[100px]">Price</div>
+     
+      </div>
     </div>
   );
 }

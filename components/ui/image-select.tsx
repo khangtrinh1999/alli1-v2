@@ -69,8 +69,8 @@ export function ImageSelect({
                 {item.image && (
                   <Image
                     src={item.image}
-                    width={220}
-                    height={220}
+                    width={150}
+                    height={150}
                     alt={item.name}
                     className="rounded-md"
                   />

@@ -130,3 +130,8 @@ button {
   -ms-user-select: none;
   user-select: none;
 }
+
+
+.table-label{
+  @apply text-sm font-semibold px-2 flex items-center flex-none ;
+}

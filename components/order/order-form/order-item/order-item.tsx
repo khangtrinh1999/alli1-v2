@@ -12,7 +12,7 @@ import VerticalBlind from "./items/vertical-blind/vertical-blind";
 
 function OrderItem() {
   return (
-    <div className="w-full border border-neutral-300 border-solid rounded-md shadow-xs">
+    <div className=" border border-neutral-300 border-solid rounded-md shadow-xs w-11/12 mx-auto">
       <div className="h-14 border-b border-neutral-300 border-solid flex flex-row items-center px-4 justify-between">
         <div className="flex flex-row items-center gap-2">
           <TooltipProvider>

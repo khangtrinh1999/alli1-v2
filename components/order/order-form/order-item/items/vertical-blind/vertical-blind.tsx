@@ -258,13 +258,13 @@ function VerticalBlind() {
           <div className="table-label w-[120px]">Action</div>
           <div className="table-label w-[50px]">No</div>
           <div className="table-label w-[200px]">Location</div>
-          <div className="table-label w-[80px]">Width</div>
-          <div className="table-label w-[80px]">Height</div>
+          <div className="table-label w-[200px]">Width</div>
+          <div className="table-label w-[200px]">Height</div>
           <div className="table-label w-[200px]">Control Stack</div>
           <div className="table-label w-[200px]">Control Length</div>
           <div className="table-label w-[150px]">Fitting</div>
           <div className="table-label w-[200px]">Fitting To</div>
-          <div className="table-label w-[500px]">Note</div>
+          <div className="table-label w-[300px]">Note</div>
           <div className="table-label w-[500px]">Extra</div>
           <div className="table-label w-[100px] text-right flex justify-end items-center">Price</div>
         </div>
@@ -272,13 +272,13 @@ function VerticalBlind() {
           <div className="w-[120px]"></div>
           <div className="w-[50px]">1</div>
           <div className="w-[200px]"><Input></Input></div>
-          <div className="w-[80px]"><SmartNumberInput value={width} onChange={setWidth}></SmartNumberInput></div>
-          <div className="w-[80px]"><SmartNumberInput value={height} onChange={setHeight}></SmartNumberInput></div>
+          <div className="w-[200px]"><SmartNumberInput value={width} onChange={setWidth}></SmartNumberInput></div>
+          <div className="w-[200px]"><SmartNumberInput value={height} onChange={setHeight}></SmartNumberInput></div>
           <div className="w-[200px]"><Input></Input></div>
           <div className="w-[200px]"><Input></Input></div>
           <div className="w-[150px]"><Input></Input></div>
           <div className="w-[200px]"><Input></Input></div>
-          <div className="w-[500px]"><Input></Input></div>
+          <div className="w-[300px]"><Input></Input></div>
           <div className="w-[500px]"><Input></Input></div>
           <div className="w-[100px] text-right">3,000.00</div>
         </div>

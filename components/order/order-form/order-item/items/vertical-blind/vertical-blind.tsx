@@ -28,7 +28,6 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Selections } from "@/lib/interface";
-import SmartNumberInput from "@/components/ui/number-input";
 
 const formSchema = z.object({
   controlType: z.string().min(1, "You must select an option"),

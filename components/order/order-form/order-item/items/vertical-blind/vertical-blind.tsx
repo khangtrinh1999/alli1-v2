@@ -29,6 +29,7 @@ import {
 } from "@/components/ui/select";
 import { Selections } from "@/lib/interface";
 import SmartNumberInput from "@/components/ui/number-input";
+import { Input } from "@/components/ui/input";
 
 const formSchema = z.object({
   controlType: z.string().min(1, "You must select an option"),
@@ -253,7 +254,7 @@ function VerticalBlind() {
       </Form>
 
       <div className="flex flex-col my-6 w-full overflow-x-scroll no-scrollbar py-2">
-        <div className="flex flex-row gap-4 w-fit">
+        <div className="flex flex-row gap-4 w-fit mb-2">
           <div className="table-label w-[120px]">Action</div>
           <div className="table-label w-[50px]">No</div>
           <div className="table-label w-[200px]">Location</div>
@@ -265,21 +266,21 @@ function VerticalBlind() {
           <div className="table-label w-[200px]">Fitting To</div>
           <div className="table-label w-[500px]">Note</div>
           <div className="table-label w-[500px]">Extra</div>
-          <div className="table-label w-[100px]">Price</div>
+          <div className="table-label w-[100px] text-right flex justify-end items-center">Price</div>
         </div>
         <div className="flex flex-row gap-4 w-fit">
-          <div className="table-label w-[120px]"></div>
-          <div className="table-label w-[50px]"></div>
-          <div className="table-label w-[200px]"></div>
-          <div className="table-label w-[80px]"><SmartNumberInput value={width} onChange={setWidth}></SmartNumberInput></div>
-          <div className="table-label w-[80px]"><SmartNumberInput value={height} onChange={setHeight}></SmartNumberInput></div>
-          <div className="table-label w-[200px]"></div>
-          <div className="table-label w-[200px]"></div>
-          <div className="table-label w-[150px]"></div>
-          <div className="table-label w-[200px]"></div>
-          <div className="table-label w-[500px]"></div>
-          <div className="table-label w-[500px]"></div>
-          <div className="table-label w-[100px]"></div>
+          <div className="w-[120px]"></div>
+          <div className="w-[50px]">1</div>
+          <div className="w-[200px]"><Input></Input></div>
+          <div className="w-[80px]"><SmartNumberInput value={width} onChange={setWidth}></SmartNumberInput></div>
+          <div className="w-[80px]"><SmartNumberInput value={height} onChange={setHeight}></SmartNumberInput></div>
+          <div className="w-[200px]"><Input></Input></div>
+          <div className="w-[200px]"><Input></Input></div>
+          <div className="w-[150px]"><Input></Input></div>
+          <div className="w-[200px]"><Input></Input></div>
+          <div className="w-[500px]"><Input></Input></div>
+          <div className="w-[500px]"><Input></Input></div>
+          <div className="w-[100px] text-right">3,000.00</div>
         </div>
       </div>
     </div>

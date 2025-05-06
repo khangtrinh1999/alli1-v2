@@ -28,6 +28,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Selections } from "@/lib/interface";
+import SmartNumberInput from "@/components/ui/number-input";
 
 const formSchema = z.object({
   controlType: z.string().min(1, "You must select an option"),
@@ -59,6 +60,10 @@ function VerticalBlind() {
   const onChangeFabricBrand = (subItems: Selections[]) => {
     setFabricName(subItems);
   };
+
+  const [width, setWidth] = useState<string>("0");
+  const [height, setHeight] = useState<string>("0");
+
   return (
     <div className="w-full flex flex-col">
       <Form {...form}>
@@ -247,20 +252,35 @@ function VerticalBlind() {
         </form>
       </Form>
 
-      <div className="flex flex-row gap-4 my-6 w-full overflow-x-scroll no-scrollbar">
-       <div className="table-label w-[120px]">Action</div>
-       <div className="table-label w-[50px]">No</div>
-       <div className="table-label w-[200px]">Location</div>
-       <div className="table-label w-[80px]">Width</div>
-       <div className="table-label w-[80px]">Height</div> 
-       <div className="table-label w-[200px]">Control Stack</div>
-       <div className="table-label w-[200px]">Control Length</div>
-       <div className="table-label w-[150px]">Fitting</div>
-       <div className="table-label w-[200px]">Fitting To</div>
-       <div className="table-label w-[500px]">Note</div>
-       <div className="table-label w-[500px]">Extra</div>
-       <div className="table-label w-[100px]">Price</div>
-     
+      <div className="flex flex-col my-6 w-full overflow-x-scroll no-scrollbar py-2">
+        <div className="flex flex-row gap-4 w-fit">
+          <div className="table-label w-[120px]">Action</div>
+          <div className="table-label w-[50px]">No</div>
+          <div className="table-label w-[200px]">Location</div>
+          <div className="table-label w-[80px]">Width</div>
+          <div className="table-label w-[80px]">Height</div>
+          <div className="table-label w-[200px]">Control Stack</div>
+          <div className="table-label w-[200px]">Control Length</div>
+          <div className="table-label w-[150px]">Fitting</div>
+          <div className="table-label w-[200px]">Fitting To</div>
+          <div className="table-label w-[500px]">Note</div>
+          <div className="table-label w-[500px]">Extra</div>
+          <div className="table-label w-[100px]">Price</div>
+        </div>
+        <div className="flex flex-row gap-4 w-fit">
+          <div className="table-label w-[120px]"></div>
+          <div className="table-label w-[50px]"></div>
+          <div className="table-label w-[200px]"></div>
+          <div className="table-label w-[80px]"><SmartNumberInput value={width} onChange={setWidth}></SmartNumberInput></div>
+          <div className="table-label w-[80px]"><SmartNumberInput value={width} onChange={setWidth}></SmartNumberInput></div>
+          <div className="table-label w-[200px]"></div>
+          <div className="table-label w-[200px]"></div>
+          <div className="table-label w-[150px]"></div>
+          <div className="table-label w-[200px]"></div>
+          <div className="table-label w-[500px]"></div>
+          <div className="table-label w-[500px]"></div>
+          <div className="table-label w-[100px]"></div>
+        </div>
       </div>
     </div>
   );

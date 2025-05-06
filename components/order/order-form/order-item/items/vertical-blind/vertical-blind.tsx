@@ -30,6 +30,14 @@ import {
 import { Selections } from "@/lib/interface";
 import SmartNumberInput from "@/components/ui/number-input";
 import { Input } from "@/components/ui/input";
+import { MinusIcon, PlusIcon } from "lucide-react";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
+import { Button } from "@/components/ui/button";
 
 const formSchema = z.object({
   controlType: z.string().min(1, "You must select an option"),
@@ -253,8 +261,8 @@ function VerticalBlind() {
         </form>
       </Form>
 
-      <div className="flex flex-col my-6 w-full overflow-x-scroll no-scrollbar py-2">
-        <div className="flex flex-row gap-4 w-fit mb-2">
+      <div className="flex flex-col my-6 w-full overflow-x-scroll no-scrollbar py-2 gap-y-2">
+        <div className="flex flex-row gap-4 w-fit mb-1">
           <div className="table-label w-[120px]">Action</div>
           <div className="table-label w-[50px]">No</div>
           <div className="table-label w-[200px]">Location</div>
@@ -265,21 +273,198 @@ function VerticalBlind() {
           <div className="table-label w-[150px]">Fitting</div>
           <div className="table-label w-[200px]">Fitting To</div>
           <div className="table-label w-[300px]">Note</div>
-          <div className="table-label w-[500px]">Extra</div>
-          <div className="table-label w-[100px] text-right flex justify-end items-center">Price</div>
+          <div className="table-label w-[400px]">Extra</div>
+          <div className="table-label w-[100px] text-right flex justify-end items-center">
+            Price
+          </div>
         </div>
         <div className="flex flex-row gap-4 w-fit">
-          <div className="w-[120px]"></div>
+          <div className="w-[120px] flex gap-1">
+            <TooltipProvider>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <Button variant="outline" size={"icon"}>
+                    <PlusIcon></PlusIcon>
+                  </Button>
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p>Copy</p>
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
+            <TooltipProvider>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <Button variant="outline" size={"icon"}>
+                    <MinusIcon></MinusIcon>
+                  </Button>
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p>Delete</p>
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
+          </div>
           <div className="w-[50px]">1</div>
-          <div className="w-[200px]"><Input></Input></div>
-          <div className="w-[200px]"><SmartNumberInput value={width} onChange={setWidth}></SmartNumberInput></div>
-          <div className="w-[200px]"><SmartNumberInput value={height} onChange={setHeight}></SmartNumberInput></div>
-          <div className="w-[200px]"><Input></Input></div>
-          <div className="w-[200px]"><Input></Input></div>
-          <div className="w-[150px]"><Input></Input></div>
-          <div className="w-[200px]"><Input></Input></div>
-          <div className="w-[300px]"><Input></Input></div>
-          <div className="w-[500px]"><Input></Input></div>
+          <div className="w-[200px]">
+            <Input></Input>
+          </div>
+          <div className="w-[200px]">
+            <SmartNumberInput
+              value={width}
+              onChange={setWidth}
+            ></SmartNumberInput>
+          </div>
+          <div className="w-[200px]">
+            <SmartNumberInput
+              value={height}
+              onChange={setHeight}
+            ></SmartNumberInput>
+          </div>
+          <div className="w-[200px]">
+            <Input></Input>
+          </div>
+          <div className="w-[200px]">
+            <Input></Input>
+          </div>
+          <div className="w-[150px]">
+            <Input></Input>
+          </div>
+          <div className="w-[200px]">
+            <Input></Input>
+          </div>
+          <div className="w-[300px]">
+            <Input></Input>
+          </div>
+          <div className="w-[400px]">
+            <Input></Input>
+          </div>
+          <div className="w-[100px] text-right">3,000.00</div>
+        </div>
+        <div className="flex flex-row gap-4 w-fit">
+        <div className="w-[120px] flex gap-1">
+            <TooltipProvider>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <Button variant="outline" size={"icon"}>
+                    <PlusIcon></PlusIcon>
+                  </Button>
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p>Copy</p>
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
+            <TooltipProvider>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <Button variant="outline" size={"icon"}>
+                    <MinusIcon></MinusIcon>
+                  </Button>
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p>Delete</p>
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
+          </div>
+          <div className="w-[50px]">2</div>
+          <div className="w-[200px]">
+            <Input></Input>
+          </div>
+          <div className="w-[200px]">
+            <SmartNumberInput
+              value={width}
+              onChange={setWidth}
+            ></SmartNumberInput>
+          </div>
+          <div className="w-[200px]">
+            <SmartNumberInput
+              value={height}
+              onChange={setHeight}
+            ></SmartNumberInput>
+          </div>
+          <div className="w-[200px]">
+            <Input></Input>
+          </div>
+          <div className="w-[200px]">
+            <Input></Input>
+          </div>
+          <div className="w-[150px]">
+            <Input></Input>
+          </div>
+          <div className="w-[200px]">
+            <Input></Input>
+          </div>
+          <div className="w-[300px]">
+            <Input></Input>
+          </div>
+          <div className="w-[400px]">
+            <Input></Input>
+          </div>
+          <div className="w-[100px] text-right">3,000.00</div>
+        </div>
+        <div className="flex flex-row gap-4 w-fit">
+        <div className="w-[120px] flex gap-1">
+            <TooltipProvider>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <Button variant="outline" size={"icon"}>
+                    <PlusIcon></PlusIcon>
+                  </Button>
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p>Copy</p>
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
+            <TooltipProvider>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <Button variant="outline" size={"icon"}>
+                    <MinusIcon></MinusIcon>
+                  </Button>
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p>Delete</p>
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
+          </div>
+          <div className="w-[50px]">3</div>
+          <div className="w-[200px]">
+            <Input></Input>
+          </div>
+          <div className="w-[200px]">
+            <SmartNumberInput
+              value={width}
+              onChange={setWidth}
+            ></SmartNumberInput>
+          </div>
+          <div className="w-[200px]">
+            <SmartNumberInput
+              value={height}
+              onChange={setHeight}
+            ></SmartNumberInput>
+          </div>
+          <div className="w-[200px]">
+            <Input></Input>
+          </div>
+          <div className="w-[200px]">
+            <Input></Input>
+          </div>
+          <div className="w-[150px]">
+            <Input></Input>
+          </div>
+          <div className="w-[200px]">
+            <Input></Input>
+          </div>
+          <div className="w-[300px]">
+            <Input></Input>
+          </div>
+          <div className="w-[400px]">
+            <Input></Input>
+          </div>
           <div className="w-[100px] text-right">3,000.00</div>
         </div>
       </div>

@@ -35,7 +35,7 @@ function OrderItem() {
                 </Button>
               </TooltipTrigger>
               <TooltipContent>
-                <p>Copy</p>
+                <p>Delete</p>
               </TooltipContent>
             </Tooltip>
           </TooltipProvider>
